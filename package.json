@@ -1,0 +1,11 @@
+{
+  "name": "@morbidick/lit-element-notify",
+  "version": "0.1.0",
+  "description": "Small mixin for LitElement to get easy change events via the properties getter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morbidick/lit-element-notify"
+  },
+  "main": "lit-element-notify.js"
+}

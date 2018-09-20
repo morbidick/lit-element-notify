@@ -1,4 +1,4 @@
-export const notify = (baseElement) => class extends baseElement {
+export const LitNotify = (baseElement) => class extends baseElement {
     /**
      * Extend the LitElement `createProperty` method to map properties to events
      */
@@ -51,4 +51,4 @@ export const notify = (baseElement) => class extends baseElement {
     }
 };
 
-export default notify;
+export default LitNotify;

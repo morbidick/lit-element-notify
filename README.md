@@ -14,9 +14,9 @@ npm install @morbidick/lit-element-notify
 
 ```javascript
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
-import notify from '@morbidick/lit-element-notify/lit-element-notify.js';
+import LitNotify from '@morbidick/lit-element-notify/lit-element-notify.js';
 
-class notifyingElement extends notify(LitElement) {
+class NotifyingElement extends LitNotify(LitElement) {
   static get properties() {
     return {
 
@@ -36,12 +36,13 @@ class notifyingElement extends notify(LitElement) {
         notify: 'success-event', // fires success-event
       },
 
-      // if an attribute value is set, -changed is appended 
+      // if an attribute value is set, -changed is appended
       anotherProperty: {
         type: String,
         attribute: 'another-attribute',
         notify: true, // fires another-attribute-changed
       },
+
     };
   }
 }

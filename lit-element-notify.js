@@ -17,15 +17,15 @@ export const LitNotify = (baseElement) => class extends baseElement {
     /**
      * check for changed properties with notify option and fire the events
      */
-    update(props) {
-        super.update(props);
+    update(changedProps) {
+        super.update(changedProps);
 
         if (!this.constructor._propertyEventMap) {
             return;
         }
 
         for (const [eventProp, eventName] of this.constructor._propertyEventMap.entries()) {
-            if (props.has(eventProp)) {
+            if (changedProps.has(eventProp)) {
                 this.dispatchEvent(new CustomEvent(eventName, {
                     detail: {
                         value: this[eventProp],
@@ -41,11 +41,13 @@ export const LitNotify = (baseElement) => class extends baseElement {
      * Returns the event name for the given property.
      */
     static _eventNameForProperty(name, options) {
-        if (options.notify && typeof options.notify === 'string')
+        if (options.notify && typeof options.notify === 'string') {
             return options.notify;
+        }
 
-        if (options.attribute && typeof options.attribute === 'string')
+        if (options.attribute && typeof options.attribute === 'string') {
             return `${options.attribute}-changed`;
+        }
 
         return `${name.toLowerCase()}-changed`;
     }

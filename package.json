@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/morbidick/lit-element-notify"
   },
-  "main": "lit-element-notify.js",
+  "main": "index.js",
   "dependencies": {
     "@polymer/lit-element": "^0.6.2",
     "lit-html": "^0.12.0"

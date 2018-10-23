@@ -1,5 +1,5 @@
 import {directive} from "lit-html/lib/directive.js";
-import {eventNameForProperty} from "./lit-element-notify.js";
+import {eventNameForProperty} from "./notify.js";
 
 /**
  * lit-html directive to bind an element property to a sibling property
@@ -24,3 +24,5 @@ export const bind = (element, property, eventName) => directive((part) => {
         });
     }
 });
+
+export default bind;

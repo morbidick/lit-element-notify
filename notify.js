@@ -13,6 +13,11 @@ export function eventNameForProperty(name, options = {}) {
     return `${name.toLowerCase()}-changed`;
 }
 
+/**
+ * Enables the nofity option for properties to fire change notification events
+ *
+ * @param {LitElement} baseElement - the LitElement to extend
+ */
 export const LitNotify = (baseElement) => class extends baseElement {
     /**
      * Extend the LitElement `createProperty` method to map properties to events

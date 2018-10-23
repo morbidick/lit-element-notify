@@ -1,3 +1,18 @@
+/**
+ * Returns the event name for the given property.
+ */
+export function eventNameForProperty(name, options = {}) {
+    if (options.notify && typeof options.notify === 'string') {
+        return options.notify;
+    }
+
+    if (options.attribute && typeof options.attribute === 'string') {
+        return `${options.attribute}-changed`;
+    }
+
+    return `${name.toLowerCase()}-changed`;
+}
+
 export const LitNotify = (baseElement) => class extends baseElement {
     /**
      * Extend the LitElement `createProperty` method to map properties to events
@@ -10,7 +25,7 @@ export const LitNotify = (baseElement) => class extends baseElement {
         }
 
         if (options.notify) {
-            this._propertyEventMap.set(name, this._eventNameForProperty(name, options));
+            this._propertyEventMap.set(name, eventNameForProperty(name, options));
         }
     }
 
@@ -35,21 +50,6 @@ export const LitNotify = (baseElement) => class extends baseElement {
                 }));
             }
         }
-    }
-
-    /**
-     * Returns the event name for the given property.
-     */
-    static _eventNameForProperty(name, options) {
-        if (options.notify && typeof options.notify === 'string') {
-            return options.notify;
-        }
-
-        if (options.attribute && typeof options.attribute === 'string') {
-            return `${options.attribute}-changed`;
-        }
-
-        return `${name.toLowerCase()}-changed`;
     }
 };
 

@@ -12,8 +12,8 @@ export const bind = (element, property, eventName) => directive((part) => {
     part.setValue(element[property]);
 
     // mark the committer so the listener is only attached once
-    if (!part.committer.bindInitialized) {
-        part.committer.bindInitialized = true;
+    if (!part.bindInitialized) {
+        part.bindInitialized = true;
 
         const notifyingElement = part.committer.element;
         const notifyingProperty = part.committer.name;

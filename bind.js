@@ -19,8 +19,8 @@ export const bind = (element, property, eventName) => directive((part) => {
         const notifyingProperty = part.committer.name;
         const notifyingEvent = eventName || eventNameForProperty(notifyingProperty);
 
-        notifyingElement.addEventListener(notifyingEvent, () => {
-            element[property] = notifyingElement[notifyingProperty];
+        notifyingElement.addEventListener(notifyingEvent, (e) => {
+            element[property] = e.detail.value;
         });
     }
 });

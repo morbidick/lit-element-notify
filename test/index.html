@@ -1,0 +1,61 @@
+<script type="module">
+    //import "@polymer/lit-element/lit-element.js";
+    import {html, render} from "lit-html/lit-html.js";
+    import {LitElement} from "@polymer/lit-element/lit-element.js";
+    import {eventNameForProperty, LitNotify} from "../notify.js";
+    import {bind} from "../bind.js";
+
+    class NotifyingElement extends LitNotify(LitElement) {
+        static get properties() {
+            return {
+                token: {
+                    type: Number,
+                    notify: true,
+                    reflect: true,
+                },
+            };
+        }
+
+        decrement() {
+            this.token -= 1;
+        }
+
+        render() {
+            return html`
+                <h2>Inner Element: ${this.token} <button @click=${this.decrement}>-</button></h2>
+            `;
+        }
+    }
+    customElements.define('notifying-element', NotifyingElement);
+
+    class BindingElement extends LitElement {
+        static get properties() {
+            return {
+                whut: {
+                    type: Number,
+                    reflect: true,
+                },
+            };
+        }
+
+        constructor() {
+            super();
+            this.whut = 2342;
+        }
+
+        increment() {
+            this.whut += 1;
+        }
+
+        render() {
+            return html`
+                <h1>Outer Element ${this.whut} <button @click=${this.increment}>+</button></h1>
+                <notifying-element token=${bind(this, 'whut')}></notifying-element>
+            `;
+        }
+    }
+    customElements.define('binding-element', BindingElement);
+
+    render(html`<binding-element></binding-element>`, document.body);
+
+</script>

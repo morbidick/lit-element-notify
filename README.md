@@ -10,9 +10,7 @@ Small helpers for LitElement to dispatch change notifications and two-way bindin
 npm install @morbidick/lit-element-notify
 ```
 
-## Usage
-
-### Notify mixin
+## Notify mixin
 
 Small mixin for LitElement to get easy change events via the `properties` getter.
 
@@ -60,42 +58,26 @@ class NotifyingElement extends LitNotify(LitElement) {
 }
 ```
 
-### Subscribe directive
+## Subscribe directive
 
-lit-html directive to subscribe an element property to a childs property, adding two-way binding to lit-element. The function takes three parameters:
+lit-html directive to subscribe an element property to a childs property, adding two-way binding to lit-element. 
 
-1. the element on which the property will be updated
-2. the element property name to update
-3. (optional) the childss event name to subscribe to, by default the property name will be lowercased and suffixed with `-changed` (main use case is the conversion from the camelCase property to the kebap-case event as PolymerElement does by default)
-
-The element property will be updated to the `event.detail.value` supplied by the childs element.
+### Import
 
 ```javascript
-import { LitElement, html } from '@polymer/lit-element/lit-element.js';
 import subscribe from '@morbidick/lit-element-notify/subscribe.js';
-
-class SubscribingElement extends LitElement {
-    static get properties() {
-        return {
-            myProperty: {type: String},
-        };
-    }
 ```
 
-### Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token` when `myProperty` is set
+### Usage
 
-```javascript
-    render() {
-        return html`
-            <notifying-element .token=${subscribe(this, 'myProperty')}></notifying-element>`;
-    }
-```
+The function takes three parameters, the element on which to update, the property to update and third an optional event name on which to update.
 
-### Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed`
+* Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token` when `myProperty` is set
+    ```javascript
+    html`<notifying-element .token=${subscribe(this, 'myProperty')}></notifying-element>`;
+    ```
 
-```
-    render() {
-        return html`
-            <notifying-element .myMessage=${subscribe(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
-    }
-```
+* Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed` (mainly used to map from the camelCase property to the kebap-case event as PolymerElement does by default)
+    ```javascript
+    html`<notifying-element .myMessage=${subscribe(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
+    ```

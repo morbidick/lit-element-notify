@@ -9,8 +9,8 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.2",
-    "lit-html": "^0.12.0"
+    "@polymer/lit-element": "^0.6.3",
+    "lit-html": "^0.13.0"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.0.2",

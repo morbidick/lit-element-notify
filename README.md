@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@morbidick/lit-element-notify.svg)](https://www.npmjs.com/package/@morbidick/lit-element-notify)
 
-Small helpers for LitElement to dispatch change notifications and two-way binding.
+Small helpers for LitElement to dispatch change notifications and two-way binding. For a comparison to PolymerElement and pure LitElement see [comparison section](docs/comparison.md) in the docs.
 
 ## Install
 
@@ -18,7 +18,7 @@ This mixin adds the `notify` option to the property definition. Similar to the L
 
 1. `notify: true`: the property gets lowercased and `-changed` is appended (note: contrary to PolymerElement and similar to LitElements attribute handling no camelCase to kebap-case conversion is done).
 2. the notify option contains a string: `notify: 'success-event` fires an event named `success-event`.
-3. `notify: true` is set and the attribute option is a string (`attribute: 'attribute-name`): the attribute name will be suffixed with `-changed`.
+3. `notify: true` is set and the attribute option is a string (`attribute: 'attribute-name'`): the attribute name will be suffixed with `-changed`.
 
 The updated value of the property is available in `event.detail.value`.
 
@@ -60,7 +60,7 @@ class NotifyingElement extends LitNotify(LitElement) {
 
 ## Subscribe directive
 
-lit-html directive to subscribe an element property to a childs property, adding two-way binding to lit-element. 
+lit-html directive to subscribe an element property to a childs property, adding two-way binding to lit-element.
 
 ### Import
 

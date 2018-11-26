@@ -8,7 +8,7 @@ import {eventNameForProperty} from "./notify.js";
  * @param {string} property - The property to update on change
  * @param {string} [eventName] - Optional event name to subscribe to, defaults to propertyname-changed
  */
-export const subscribe = (element, property, eventName) => directive((part) => {
+export const subscribe = directive((element, property, eventName) => (part) => {
     part.setValue(element[property]);
 
     // mark the committer so the listener is only attached once

@@ -1,2 +1,2 @@
 export {LitNotify} from "./notify.js";
-export {bind} from "./bind.js";
+export {subscribe} from "./subscribe.js";

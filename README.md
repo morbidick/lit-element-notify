@@ -52,20 +52,26 @@ class NotifyingElement extends LitNotify(LitElement) {
 }
 ```
 
-### Bind directive
+### Subscribe directive
 
-Two way bind a property value via lit-html directive
+lit-html directive to subscribe an element property to a sibling property, adding two-way binding to lit-element.
 
 ```javascript
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
-import bind from '@morbidick/lit-element-notify/bind.js';
+import subscribe from '@morbidick/lit-element-notify/subscribe.js';
 
-class BindingElement extends LitElement {
+class SubscribingElement extends LitElement {
+    static get properties() {
+        return {
+            myProperty: {type: String},
+            myProperty2: {type: String},
+        };
+    }
     render() {
         return html`
             <notifying-element
-                token=${bind(this, 'myProperty')}
-                thing=${bind(this, 'customProperty', 'success-event')}
+                token=${subscribe(this, 'myProperty')}
+                .anotherProperty=${subscribe(this, 'myProperty2', 'another-attribute-changed')}
             ></notifying-element>`;
     }
 }

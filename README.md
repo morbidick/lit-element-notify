@@ -74,29 +74,28 @@ The element property will be updated to the `event.detail.value` supplied by the
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
 import subscribe from '@morbidick/lit-element-notify/subscribe.js';
 
-// Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token`` when `myProperty` is set
 class SubscribingElement extends LitElement {
     static get properties() {
         return {
             myProperty: {type: String},
         };
     }
+```
+
+* Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token`` when `myProperty` is set
+
+```javascript
     render() {
         return html`
             <notifying-element .token=${subscribe(this, 'myProperty')}></notifying-element>`;
     }
-}
+```
 
-// Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed`
-class SubscribingElementCustomEvent extends LitElement {
-    static get properties() {
-        return {
-            myProperty: {type: String},
-        };
-    }
+* Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed`
+
+```
     render() {
         return html`
             <notifying-element .myMessage=${subscribe(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
     }
-}
 ```

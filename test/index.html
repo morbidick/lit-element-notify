@@ -4,7 +4,7 @@
     import {html, render} from "lit-html/lit-html.js";
     import {LitElement} from "@polymer/lit-element/lit-element.js";
     import {eventNameForProperty, LitNotify} from "../notify.js";
-    import {bind} from "../bind.js";
+    import {subscribe} from "../subscribe.js";
 
     class NotifyingElement extends LitNotify(LitElement) {
         static get properties() {
@@ -29,7 +29,7 @@
     }
     customElements.define('notifying-element', NotifyingElement);
 
-    class BindingElement extends LitElement {
+    class SubscribingElement extends LitElement {
         static get properties() {
             return {
                 whut: {
@@ -51,12 +51,12 @@
         render() {
             return html`
                 <h1>Outer Element ${this.whut} <button @click=${this.increment}>+</button></h1>
-                <notifying-element token=${bind(this, 'whut')}></notifying-element>
+                <notifying-element token=${subscribe(this, 'whut')}></notifying-element>
             `;
         }
     }
-    customElements.define('binding-element', BindingElement);
+    customElements.define('subscribing-element', SubscribingElement);
 
-    render(html`<binding-element></binding-element>`, document.body);
+    render(html`<subscribing-element></subscribing-element>`, document.body);
 
 </script>

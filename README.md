@@ -82,7 +82,7 @@ class SubscribingElement extends LitElement {
     }
 ```
 
-* Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token`` when `myProperty` is set
+### Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token` when `myProperty` is set
 
 ```javascript
     render() {
@@ -91,7 +91,7 @@ class SubscribingElement extends LitElement {
     }
 ```
 
-* Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed`
+### Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed`
 
 ```
     render() {

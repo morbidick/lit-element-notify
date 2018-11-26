@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@morbidick/lit-element-notify.svg)](https://www.npmjs.com/package/@morbidick/lit-element-notify)
 
-Small helpers for LitElement to dispatch change notifications and two-way binding to siblings.
+Small helpers for LitElement to dispatch change notifications and two-way binding.
 
 ## Install
 
@@ -49,10 +49,10 @@ class NotifyingElement extends LitNotify(LitElement) {
       },
 
       // if an attribute value is set, -changed is appended
-      anotherProperty: {
+      myMessage: {
         type: String,
-        attribute: 'another-attribute',
-        notify: true, // fires another-attribute-changed
+        attribute: 'my-message',
+        notify: true, // fires my-message-changed
       },
 
     };
@@ -62,29 +62,41 @@ class NotifyingElement extends LitNotify(LitElement) {
 
 ### Subscribe directive
 
-lit-html directive to subscribe an element property to a sibling property, adding two-way binding to lit-element. The function takes three parameters:
+lit-html directive to subscribe an element property to a childs property, adding two-way binding to lit-element. The function takes three parameters:
 
-1. the object on which the property will be updated
-2. the property name to update
-3. (optional) the event name to subscribe to, by default the property name will be lowercased and suffixed with `-changed`
+1. the element on which the property will be updated
+2. the element property name to update
+3. (optional) the childss event name to subscribe to, by default the property name will be lowercased and suffixed with `-changed` (main use case is the conversion from the camelCase property to the kebap-case event as PolymerElement does by default)
+
+The element property will be updated to the `event.detail.value` supplied by the childs element.
 
 ```javascript
 import { LitElement, html } from '@polymer/lit-element/lit-element.js';
 import subscribe from '@morbidick/lit-element-notify/subscribe.js';
 
+// Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token`` when `myProperty` is set
 class SubscribingElement extends LitElement {
     static get properties() {
         return {
             myProperty: {type: String},
-            myProperty2: {type: String},
         };
     }
     render() {
         return html`
-            <notifying-element
-                token=${subscribe(this, 'myProperty')}
-                .anotherProperty=${subscribe(this, 'myProperty2', 'another-attribute-changed')}
-            ></notifying-element>`;
+            <notifying-element .token=${subscribe(this, 'myProperty')}></notifying-element>`;
+    }
+}
+
+// Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed`
+class SubscribingElementCustomEvent extends LitElement {
+    static get properties() {
+        return {
+            myProperty: {type: String},
+        };
+    }
+    render() {
+        return html`
+            <notifying-element .myMessage=${subscribe(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
     }
 }
 ```

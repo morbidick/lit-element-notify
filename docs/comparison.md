@@ -26,15 +26,15 @@ class NotifyingElement extends LitElement {
                 type: String
     }}}
     update(props) {
-		super.update(props);
-		if (props.has('message')) {
-			this.dispatchEvent(new CustomEvent('message-changed', {
-				detail: {
-					value: this.message,
-				},
-				bubbles: false,
-				composed: true
-			}));
+        super.update(props);
+        if (props.has('message')) {
+            this.dispatchEvent(new CustomEvent('message-changed', {
+                detail: {
+                    value: this.message,
+                },
+                bubbles: false,
+                composed: true
+        }));
     }
 }
 ```

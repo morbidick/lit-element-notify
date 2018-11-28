@@ -65,7 +65,7 @@ class NotifyingElement extends LitNotify(LitElement) {
 
 ## Two-way data binding
 
-Listening to a child event and updating a property
+Synchronizing a parent property with a childs property.
 
 ### PolymerElement*
 
@@ -85,10 +85,10 @@ html`<element @value-changed=${(e) => this.myProperty = e.detail.value}></elemen
 html`<element .value=${this.myProperty} @value-changed=${(e) => this.myProperty = e.detail.value}></element>`
 ```
 
-### LitElement with subscribe directive*
+### LitElement with sync directive*
 
 ```js
-html`<element .value=${subscribe(this, 'myProperty')}></element>`
+html`<element .value=${sync(this, 'myProperty')}></element>`
 ```
 
 <sub>* two-way binding so also updating the child when the parent property changes</sub>

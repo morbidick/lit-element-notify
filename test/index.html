@@ -4,7 +4,7 @@
     import {html, render} from "lit-html/lit-html.js";
     import {LitElement} from "@polymer/lit-element/lit-element.js";
     import {eventNameForProperty, LitNotify} from "../notify.js";
-    import {subscribe} from "../subscribe.js";
+    import {sync} from "../sync.js";
 
     class NotifyingElement extends LitNotify(LitElement) {
         static get properties() {
@@ -51,7 +51,7 @@
         render() {
             return html`
                 <h1>Outer Element ${this.whut} <button @click=${this.increment}>+</button></h1>
-                <notifying-element token=${subscribe(this, 'whut')}></notifying-element>
+                <notifying-element token=${sync(this, 'whut')}></notifying-element>
             `;
         }
     }

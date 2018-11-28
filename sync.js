@@ -2,18 +2,18 @@ import {directive} from "lit-html/lib/directive.js";
 import {eventNameForProperty} from "./notify.js";
 
 /**
- * lit-html directive to subscribe an element property to a sibling property
+ * lit-html directive to sync an element property to a child property
  *
- * @param {HTMLElement} element - The element to update
- * @param {string} property - The property to update on change
- * @param {string} [eventName] - Optional event name to subscribe to, defaults to propertyname-changed
+ * @param {HTMLElement} element - The parent element
+ * @param {string} property - The property name
+ * @param {string} [eventName] - Optional event name to sync on, defaults to propertyname-changed
  */
-export const subscribe = directive((element, property, eventName) => (part) => {
+export const sync = directive((element, property, eventName) => (part) => {
     part.setValue(element[property]);
 
     // mark the committer so the listener is only attached once
-    if (!part.subscribeInitialized) {
-        part.subscribeInitialized = true;
+    if (!part.syncInitialized) {
+        part.syncInitialized = true;
 
         const notifyingElement = part.committer.element;
         const notifyingProperty = part.committer.name;
@@ -25,4 +25,4 @@ export const subscribe = directive((element, property, eventName) => (part) => {
     }
 });
 
-export default subscribe;
+export default sync;

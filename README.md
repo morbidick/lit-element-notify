@@ -58,26 +58,26 @@ class NotifyingElement extends LitNotify(LitElement) {
 }
 ```
 
-## Subscribe directive
+## Sync directive
 
-lit-html directive to subscribe an element property to a childs property, adding two-way binding to lit-element.
+lit-html directive to synchronize an element property to a childs property, adding two-way binding to lit-element.
 
 ### Import
 
 ```javascript
-import subscribe from '@morbidick/lit-element-notify/subscribe.js';
+import sync from '@morbidick/lit-element-notify/sync.js';
 ```
 
 ### Usage
 
-The function takes three parameters, the element on which to update, the property to update and third an optional event name on which to update.
+The function takes three parameters, the parent element, the property name and an optional event name on which to sync.
 
-* Subscribing to the child property `token` will update `myProperty` when `token-changed` is fired and update `token` when `myProperty` is set.
+* Syncing the child property `token` with the parent property `myProperty` when `token-changed` is fired or `myProperty` set.
     ```javascript
-    html`<notifying-element .token=${subscribe(this, 'myProperty')}></notifying-element>`;
+    html`<notifying-element .token=${sync(this, 'myProperty')}></notifying-element>`;
     ```
 
-* Subscribing to the child property `myMessage` with the event explicitly set to `my-message-changed` (mainly used to map from the camelCase property to the kebap-case event as PolymerElement does by default).
+* Syncing the child property `myMessage` with the event explicitly set to `my-message-changed` (mainly used to map from the camelCase property to the kebap-case event as PolymerElement does by default).
     ```javascript
-    html`<notifying-element .myMessage=${subscribe(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
+    html`<notifying-element .myMessage=${sync(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
     ```

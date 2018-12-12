@@ -88,7 +88,7 @@ html`<element .value=${this.myProperty} @value-changed=${(e) => this.myProperty 
 ### LitElement with sync directive*
 
 ```js
-html`<element .value=${sync(this, 'myProperty')}></element>`
+html`<element .value=${this.sync('myProperty')}></element>`
 ```
 
 <sub>* two-way binding so also updating the child when the parent property changes</sub>

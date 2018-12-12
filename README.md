@@ -65,19 +65,22 @@ lit-html directive to synchronize an element property to a childs property, addi
 ### Import
 
 ```javascript
-import sync from '@morbidick/lit-element-notify/sync.js';
+import { LitElement, html } from '@polymer/lit-element/lit-element.js';
+import LitSync from '@morbidick/lit-element-notify/sync.js';
+
+class SyncElement extends LitSync(LitElement) {
 ```
 
 ### Usage
 
-The function takes three parameters, the parent element, the property name and an optional event name on which to sync.
+The function takes two parameters, the property name and an optional event name on which to sync.
 
 * Syncing the child property `token` with the parent property `myProperty` when `token-changed` is fired or `myProperty` set.
     ```javascript
-    html`<notifying-element .token=${sync(this, 'myProperty')}></notifying-element>`;
+    html`<notifying-element .token=${this.sync('myProperty')}></notifying-element>`;
     ```
 
 * Syncing the child property `myMessage` with the event explicitly set to `my-message-changed` (mainly used to map from the camelCase property to the kebap-case event as PolymerElement does by default).
     ```javascript
-    html`<notifying-element .myMessage=${sync(this, 'myProperty', 'my-message-changed')}></notifying-element>`;
+    html`<notifying-element .myMessage=${this.sync('myProperty', 'my-message-changed')}></notifying-element>`;
     ```

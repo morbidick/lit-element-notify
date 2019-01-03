@@ -1,6 +1,6 @@
 {
   "name": "@morbidick/lit-element-notify",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Small helpers for LitElement to dispatch change notifications and two-way binding",
   "license": "MIT",
   "repository": {
@@ -8,13 +8,15 @@
     "url": "https://github.com/morbidick/lit-element-notify"
   },
   "main": "index.js",
-  "dependencies": {
-    "@polymer/lit-element": "^0.6.3",
-    "lit-html": "^0.13.0"
+  "peerDependencies": {
+    "@polymer/lit-element": "^0.6.5",
+    "lit-html": "^1.0.0-rc.1"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.0.2",
-    "polyserve": "^0.27.0"
+    "@polymer/lit-element": "^0.6.5",
+    "@webcomponents/webcomponentsjs": "^2.2.1",
+    "lit-html": "^1.0.0-rc.1",
+    "polyserve": "^0.27.14"
   },
   "scripts": {
     "start": "npm run serve",

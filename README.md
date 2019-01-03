@@ -75,13 +75,13 @@ class SyncElement extends LitSync(LitElement) {
     // is fired or `myProperty` set.
     render() { return html`
         <notifying-element .token=${this.sync('myProperty')}></notifying-element>
-    `; }
+    `}
 
     // Syncing the child property `myMessage` with the event explicitly set to `my-message-changed` 
     // (mainly used to map from the camelCase property to the kebap-case event as PolymerElement does).
     render() { return html`
         <notifying-element .myMessage=${this.sync('myProperty', 'my-message-changed')}></notifying-element>
-    `; }
+    `}
 
 }
 ```

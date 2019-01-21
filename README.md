@@ -23,7 +23,7 @@ This mixin adds the `notify` option to the property definition. Similar to the L
 The updated value of the property is available in `event.detail.value`.
 
 ```javascript
-import { LitElement, html } from '@polymer/lit-element/lit-element.js';
+import { LitElement, html } from 'lit-element';
 import LitNotify from '@morbidick/lit-element-notify/notify.js';
 
 class NotifyingElement extends LitNotify(LitElement) {
@@ -60,13 +60,13 @@ class NotifyingElement extends LitNotify(LitElement) {
 
 ## Sync directive
 
-lit-html directive to synchronize an element property to a childs property, adding two-way binding to lit-element. 
+lit-html directive to synchronize an element property to a childs property, adding two-way binding to lit-element.
 The directive takes two parameters, the property name and an optional event name on which to sync.
 
 ### Usage
 
 ```javascript
-import { LitElement, html } from '@polymer/lit-element/lit-element.js';
+import { LitElement, html } from 'lit-element';
 import LitSync from '@morbidick/lit-element-notify/sync.js';
 
 class SyncElement extends LitSync(LitElement) {

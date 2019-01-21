@@ -1,9 +1,7 @@
 <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 <script type="module">
-    //import "@polymer/lit-element/lit-element.js";
-    import {html, render} from "lit-html/lit-html.js";
-    import {LitElement} from "@polymer/lit-element/lit-element.js";
-    import {eventNameForProperty, LitNotify} from "../notify.js";
+    import {LitElement, html} from "lit-element";
+    import {LitNotify} from "../notify.js";
     import {LitSync} from "../sync.js";
 
     class NotifyingElement extends LitNotify(LitElement) {
@@ -56,7 +54,5 @@
         }
     }
     customElements.define('sync-element', SyncElement);
-
-    render(html`<sync-element></sync-element>`, document.body);
-
 </script>
+<sync-element></sync-element>

@@ -13,10 +13,10 @@
     "lit-html": "^1.0.0-rc.2"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.1",
-    "lit-element": "^2.0.0-rc.3",
-    "lit-html": "^1.0.0-rc.2",
-    "polyserve": "^0.27.14"
+    "@webcomponents/webcomponentsjs": "^2.2.6",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0",
+    "polyserve": "^0.27.15"
   },
   "scripts": {
     "start": "npm run serve",

@@ -8,6 +8,7 @@
     "url": "https://github.com/morbidick/lit-element-notify"
   },
   "main": "index.js",
+  "module": "index.js",
   "peerDependencies": {
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"

@@ -1,6 +1,6 @@
 {
   "name": "@morbidick/lit-element-notify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Small helpers for LitElement to dispatch change notifications and two-way binding",
   "license": "MIT",
   "repository": {

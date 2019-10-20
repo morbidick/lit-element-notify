@@ -70,7 +70,7 @@ Synchronizing a parent property with a childs property.
 ### PolymerElement*
 
 ```js
-html`<element value="{{myProperty}}></element>
+html`<element value="{{myProperty}}"></element>`
 ```
 
 ### Lit Element - upwards binding only

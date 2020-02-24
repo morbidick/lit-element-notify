@@ -1,59 +1,39 @@
 /**
  * Returns the event name for the given property.
+ * @param  {string}                       name    property name
+ * @param  {PropertyDeclaration} options property declaration
+ * @return                                event name to fire
  */
-export function eventNameForProperty(name, options = {}) {
-    if (options.notify && typeof options.notify === 'string') {
-        return options.notify;
+export function eventNameForProperty(name, { notify, attribute } = {}) {
+    if (notify && typeof notify === 'string') {
+        return notify;
+    } else if (attribute && typeof attribute === 'string') {
+        return `${attribute}-changed`;
+    } else {
+        return `${name.toLowerCase()}-changed`;
     }
-
-    if (options.attribute && typeof options.attribute === 'string') {
-        return `${options.attribute}-changed`;
-    }
-
-    return `${name.toLowerCase()}-changed`;
 }
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Enables the nofity option for properties to fire change notification events
  *
- * @param {LitElement} baseElement - the LitElement to extend
+ * @template TBase
+ * @param {Constructor<TBase>} baseElement
  */
-export const LitNotify = (baseElement) => class extends baseElement {
-    /**
-     * Extend the LitElement `createProperty` method to map properties to events
-     */
-    static createProperty(name, options) {
-        super.createProperty(name, options);
-
-        if (!this.hasOwnProperty('_propertyEventMap')) {
-            this._propertyEventMap = new Map();
-        }
-
-        if (options.notify) {
-            this._propertyEventMap.set(name, eventNameForProperty(name, options));
-        }
-    }
-
+export const LitNotify = (baseElement) => class NotifyingElement extends baseElement {
     /**
      * check for changed properties with notify option and fire the events
      */
     update(changedProps) {
         super.update(changedProps);
 
-        if (!this.constructor._propertyEventMap) {
-            return;
-        }
-
-        for (const [eventProp, eventName] of this.constructor._propertyEventMap.entries()) {
-            if (changedProps.has(eventProp)) {
-                this.dispatchEvent(new CustomEvent(eventName, {
-                    detail: {
-                        value: this[eventProp],
-                    },
-                    bubbles: false,
-                    composed: true,
-                }));
-            }
+        for (const prop of changedProps.keys()) {
+            const declaration = this.constructor._classProperties.get(prop)
+            if (!declaration || !declaration.notify) return;
+            const type = eventNameForProperty(prop, declaration)
+            const value = this[prop]
+            this.dispatchEvent(new CustomEvent(type, { detail: { value } }));
         }
     }
 };

@@ -30,7 +30,11 @@ export const LitSync = (baseElement) => class extends baseElement {
                 const notifyingEvent = eventName || eventNameForProperty(notifyingProperty);
 
                 notifyingElement.addEventListener(notifyingEvent, (e) => {
+                    const oldValue = this[property];
                     this[property] = e.detail.value;
+                    if (this.__lookupSetter__(property) === undefined) {
+                        this.updated(new Map([[property, oldValue]]));
+                    }
                 });
             }
         });

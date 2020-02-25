@@ -1,10 +1,12 @@
 import {directive} from "lit-html/lib/directive.js";
 import {eventNameForProperty} from "./notify.js";
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Mixin that provides a lit-html directive to sync a property to a child property
  *
- * @param {LitElement} baseElement - the LitElement to extend
+ * @template TBase
+ * @param {Constructor<TBase>} baseElement
  */
 export const LitSync = (baseElement) => class extends baseElement {
     constructor() {
